@@ -2,8 +2,8 @@ pipeline {
   agent any
 
   tools {
-    maven 'Maven'     // this must match the Maven tool name in Jenkins Global Tool Config
-    jdk 'Java'        // must match your JDK tool name in Jenkins
+    maven 'Maven-3.9.6'     // this must match the Maven tool name in Jenkins Global Tool Config
+    jdk 'JDK_17'        // must match your JDK tool name in Jenkins
   }
 
   stages {
@@ -21,7 +21,7 @@ pipeline {
 
     stage('SonarQube Scan') {
       steps {
-        withSonarQubeEnv('SonarQubeServer') { // must match your Jenkins SonarQube server name
+        withSonarQubeEnv('SonarQube') { // must match your Jenkins SonarQube server name
           sh """
             mvn -f maven-demo/pom.xml sonar:sonar \
               -Dsonar.projectKey=devops-lab-jenkins-sonarqube \
